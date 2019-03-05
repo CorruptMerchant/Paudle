@@ -28,7 +28,7 @@ public class Calculate {
 	// @param func the function applied to sigma
 	public static double summation(int start, int end, Function func) {
 		double val = 0;
-		for (int i = start; i < end; i++) {
+		for (int i = start; i < end + 1; i++) {
 			val += func.of(i);
 		}
 		return val;

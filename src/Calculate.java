@@ -6,10 +6,14 @@ public class Calculate {
 	// param approaches the x value of the limit
 	// param func the function the limit of is being estimated
 	public static double limEstimate(double approaches, Function func) {
-		try {
-			return Double.isNaN(func.of(approaches)) ? (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 : func.of(approaches);
-		} catch(Exception e) {
-			return (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 ;
+		if (!(approaches == Double.POSITIVE_INFINITY || approaches == Double.NEGATIVE_INFINITY)) {
+			try {
+				return Double.isNaN(func.of(approaches)) ? (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 : func.of(approaches);
+			} catch(Exception e) {
+				return (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 ;
+			}
+		} else {
+			return approaches == Double.POSITIVE_INFINITY ? func.of(Long.MAX_VALUE) : func.of(-Long.MAX_VALUE);
 		}
 	}
 	
@@ -34,12 +38,12 @@ public class Calculate {
 		return val;
 	}
 
-	// @return the value of an infinite series; returns 0 if the series DNE
+	// @return the value of an infinite series; returns infinity if the series DNE
 	public static double geometInfinite(double a, double r) {
 		if (Math.abs(r) < 1) {
 			return a / (1.0 - r);
 		} else {
-			return 0;
+			return Double.POSITIVE_INFINITY;
 		}
 	}
 	
@@ -71,9 +75,16 @@ public class Calculate {
 	
 	// @return the combination of the inputs, or nCr in calculator
 	// @param n the top part of the combination
-	// @param r the top part of the combination
+	// @param r the bottom part of the combination
 	public static int combination(int n, int r) {
 		return factorial(n) / (factorial(r) * factorial(n - r));
+	}
+	
+	// @return the permutation of the inputs, or nPr in calculator
+	// @param n the top part of the permutation
+	// @param r the bottom part of the permutation
+	public static int permutation(int n, int r) {
+		return factorial(n) / factorial(n - r);
 	}
 	
 	// @return the conversion of the input to degrees

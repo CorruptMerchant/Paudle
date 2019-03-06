@@ -5,12 +5,13 @@ public class Calculate {
 	// return An estimate of the limit of a function
 	// param approaches the x value of the limit
 	// param func the function the limit of is being estimated
-	public static double limEstimate(double approaches, Function func) {
+	// param delta the level of accuracy
+	public static double limEstimate(double approaches, double delta, Function func) {
 		if (!(approaches == Double.POSITIVE_INFINITY || approaches == Double.NEGATIVE_INFINITY)) {
 			try {
-				return Double.isNaN(func.of(approaches)) ? (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 : func.of(approaches);
+				return Double.isNaN(func.of(approaches)) ? (func.of(approaches - delta) + func.of(approaches + delta)) / 2 : func.of(approaches);
 			} catch(Exception e) {
-				return (func.of(approaches - 0.0001) + func.of(approaches + 0.0001)) / 2 ;
+				return (func.of(approaches - delta) + func.of(approaches + delta)) / 2 ;
 			}
 		} else {
 			return approaches == Double.POSITIVE_INFINITY ? func.of(Long.MAX_VALUE) : func.of(-Long.MAX_VALUE);

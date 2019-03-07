@@ -1,7 +1,7 @@
 
 public class Matrix {
 	
-	Vector[] value;
+	private Vector[] value;
 	
 	public Matrix(Vector[] vects) {
 		this.value = vects;

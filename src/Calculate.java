@@ -97,5 +97,5 @@ public class Calculate {
 	public static double d2r(double degree) {
 		return degree * (Math.PI / 180.0);
 	}
-	
+
 }

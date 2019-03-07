@@ -7,8 +7,8 @@ public class Vector {
 		this.value = value;
 	}
 	
-	public Vector() {
-		this.value = new double[1];
+	public Vector(int length) {
+		this.value = new double[length];
 	}
 	
 	public void addValue(double value) {
@@ -20,7 +20,7 @@ public class Vector {
 		this.value = temp;
 	}
 	
-	public double[] getValue() {
+	public double[] toArray() {
 		return value;
 	}
 	
@@ -49,4 +49,53 @@ public class Vector {
 	public int length() {
 		return value.length;
 	}
+	
+	public String toString() {
+		String output = "";
+		for (double i : this.value) {
+			output += i + " ";
+		}
+		return output;
+	}
+	
+	public Vector add(Vector vect) {
+		Vector output = new Vector(this.value.length);
+		for (int i = 0; i < this.value.length; i++) {
+			output.setPosition(this.value[i] + vect.toArray()[i], i);
+		}
+		return output;
+	}
+	
+	public Vector subtract(Vector vect) {
+		Vector output = new Vector(this.value.length);
+		for (int i = 0; i < this.value.length; i++) {
+			output.setPosition(this.value[i] - vect.toArray()[i], i);
+		}
+		return output;
+	}
+	
+	public Vector multiply(Vector vect) {
+		Vector output = new Vector(this.value.length);
+		for (int i = 0; i < this.value.length; i++) {
+			output.setPosition(this.value[i] * vect.toArray()[i], i);
+		}
+		return output;
+	}
+	
+	public Vector divide(Vector vect) {
+		Vector output = new Vector(this.value.length);
+		for (int i = 0; i < this.value.length; i++) {
+			output.setPosition(this.value[i] / vect.toArray()[i], i);
+		}
+		return output;
+	}
+	
+	public Vector mod(Vector vect) {
+		Vector output = new Vector(this.value.length);
+		for (int i = 0; i < this.value.length; i++) {
+			output.setPosition(this.value[i] % vect.toArray()[i], i);
+		}
+		return output;
+	}
+
 }
